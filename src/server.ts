@@ -9,6 +9,7 @@ app.get("/", (request, response) => {
 });
 
 app.post("/courses", (request, response) => {
+    console.log("teste reload");
     const { name } = request.body;
 
     return response.json({ name });
