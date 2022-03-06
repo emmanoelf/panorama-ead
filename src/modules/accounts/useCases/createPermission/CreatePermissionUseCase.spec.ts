@@ -21,8 +21,6 @@ describe("Create permission UseCase", () => {
         const permissionCreated =
             await permissionsRepositoryInMemory.findByName(permission.name);
 
-        console.log({ permissionCreated });
-
         expect(permissionCreated).toHaveProperty("id");
         expect(permissionsRepositoryInMemory.permissions.length).toBe(1);
     });
@@ -31,6 +29,7 @@ describe("Create permission UseCase", () => {
         const firstPermission = {
             name: "test permission",
         };
+
         await createPermissionUseCase.execute(firstPermission);
 
         const secondPermission = {
@@ -40,17 +39,5 @@ describe("Create permission UseCase", () => {
         await expect(
             createPermissionUseCase.execute(secondPermission)
         ).rejects.toEqual(new Error("Esta permissão já existe"));
-    });
-
-    it("should be able to search by id", async () => {
-        const permissionInsert = await permissionsRepositoryInMemory.create({
-            name: "test",
-        });
-
-        const searchId = await permissionsRepositoryInMemory.findById(
-            permissionInsert.id
-        );
-
-        expect(permissionInsert).toEqual(searchId);
     });
 });
