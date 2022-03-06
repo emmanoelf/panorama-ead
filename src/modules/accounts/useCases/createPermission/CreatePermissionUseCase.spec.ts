@@ -1,4 +1,5 @@
 import { PermissionsRepositoryInMemory } from "../../repositories/in-memory/PermissionsRepositoryInMemory";
+import { CreatePermissionError } from "./CreatePermissionError";
 import { CreatePermissionUseCase } from "./CreatePermissionUseCase";
 
 let permissionsRepositoryInMemory: PermissionsRepositoryInMemory;
@@ -38,6 +39,6 @@ describe("Create permission UseCase", () => {
 
         await expect(
             createPermissionUseCase.execute(secondPermission)
-        ).rejects.toEqual(new Error("Esta permissão já existe"));
+        ).rejects.toEqual(new CreatePermissionError());
     });
 });

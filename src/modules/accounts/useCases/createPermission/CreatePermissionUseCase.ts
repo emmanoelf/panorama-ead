@@ -1,4 +1,5 @@
 import { IPermissionsRepository } from "../../repositories/IPermissionsRepository";
+import { CreatePermissionError } from "./CreatePermissionError";
 
 interface IRequest {
     name: string;
@@ -13,7 +14,7 @@ class CreatePermissionUseCase {
         );
 
         if (permissionExists) {
-            throw new Error("Esta permissão já existe");
+            throw new CreatePermissionError();
         }
 
         this.permissionsRepository.create({ name });
