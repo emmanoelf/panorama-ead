@@ -1,3 +1,4 @@
+import { Permission } from "../../entities/Permission";
 import { IPermissionsRepository } from "../../repositories/IPermissionsRepository";
 import { CreatePermissionError } from "./CreatePermissionError";
 
@@ -8,7 +9,7 @@ interface IRequest {
 class CreatePermissionUseCase {
     constructor(private permissionsRepository: IPermissionsRepository) {}
 
-    async execute({ name }: IRequest): Promise<void> {
+    async execute({ name }: IRequest): Promise<Permission> {
         const permissionExists = await this.permissionsRepository.findByName(
             name
         );
@@ -17,7 +18,9 @@ class CreatePermissionUseCase {
             throw new CreatePermissionError();
         }
 
-        this.permissionsRepository.create({ name });
+        const permission = this.permissionsRepository.create({ name });
+
+        return permission;
     }
 }
 
