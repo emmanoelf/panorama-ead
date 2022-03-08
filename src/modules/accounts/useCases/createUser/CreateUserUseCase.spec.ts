@@ -13,12 +13,15 @@ describe("Create user Use Case", () => {
 
     it("Should be able to create a new user", async () => {
         const user = await createUserUseCase.execute({
-            idPermission: "IdPermission",
+            permission_id: "permission_id",
             name: "Test user name",
             email: "testUser@test.com",
             password: "test password",
             phone: "123456789",
+            ra: "1234",
         });
+
+        console.log(user);
 
         expect(user).toHaveProperty("id");
         expect(usersRepositoryInMemory.users.length).toBe(1);
@@ -26,20 +29,22 @@ describe("Create user Use Case", () => {
 
     it("Should be not able to create a new user with same email", async () => {
         await createUserUseCase.execute({
-            idPermission: "IdPermission",
+            permission_id: "permission_id",
             name: "Test user name",
             email: "testUser@test.com",
             password: "test password",
             phone: "123456789",
+            ra: "1234",
         });
 
         await expect(
             createUserUseCase.execute({
-                idPermission: "New ID Permission",
+                permission_id: "New ID Permission",
                 name: "New Test user name",
                 email: "testUser@test.com",
                 password: "new test password",
                 phone: "123456789",
+                ra: "1234",
             })
         ).rejects.toEqual(new CreateUserErrors.EmailAlreadyExistsError());
     });

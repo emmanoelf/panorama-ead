@@ -6,7 +6,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
     users: User[] = [];
 
     async create({
-        idPermission,
+        permission_id,
         name,
         email,
         password,
@@ -15,7 +15,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
         const user = new User();
 
         Object.assign(user, {
-            idPermission,
+            permission_id,
             name,
             email,
             password,
