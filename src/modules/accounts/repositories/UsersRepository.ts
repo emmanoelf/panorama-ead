@@ -28,9 +28,6 @@ class UsersRepository implements IUsersRepository {
             ra,
         });
 
-        console.log("Repositorio");
-        console.log(user);
-
         await this.repository.save(user);
         return user;
     }
@@ -41,7 +38,7 @@ class UsersRepository implements IUsersRepository {
     }
 
     async findByEmail(email: string): Promise<User> {
-        const user = await this.repository.findOne({ email });
+        const user = await this.repository.findOne(email);
         return user;
     }
 }
