@@ -21,8 +21,6 @@ describe("Create user Use Case", () => {
             ra: "1234",
         });
 
-        console.log(user);
-
         expect(user).toHaveProperty("id");
         expect(usersRepositoryInMemory.users.length).toBe(1);
     });
