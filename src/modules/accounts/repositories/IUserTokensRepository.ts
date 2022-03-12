@@ -1,0 +1,13 @@
+import { ICreateUserTokenDTO } from "../dto/ICreateUserTokenDTO";
+import { UserTokens } from "../entities/UserTokens";
+
+interface IUserTokensRepository {
+    create(data: ICreateUserTokenDTO): Promise<UserTokens>;
+    findByUserIdAndRefreshToken(
+        user_id: string,
+        refresh_token: string
+    ): Promise<UserTokens>;
+    deleteById(id: string): Promise<void>;
+}
+
+export { IUserTokensRepository };
