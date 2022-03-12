@@ -27,16 +27,8 @@ export async function ensureAuthenticated(
             process.env.SECRET_TOKEN_APP
         ) as IPayload;
 
-        const usersRepository = new UsersRepository();
-        const user = await usersRepository.findById(user_id);
-
-        if (!user) {
-            throw new AuthorizationError.UserDoesNotExists();
-        }
-
         request.user = {
             id: user_id,
-            permission_id: user.permission_id,
         };
 
         next();
