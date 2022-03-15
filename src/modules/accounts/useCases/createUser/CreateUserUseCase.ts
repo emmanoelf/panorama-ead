@@ -1,17 +1,9 @@
 import { hash } from "bcryptjs";
 
+import { ICreateUserDTO } from "../../dto/ICreateUserDTO";
 import { User } from "../../entities/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { CreateUserErrors } from "./CreateUserErrors";
-
-interface IRequest {
-    permission_id: string;
-    name: string;
-    email: string;
-    password: string;
-    phone: string;
-    ra: string;
-}
 
 class CreateUserUseCase {
     constructor(private usersRepository: IUsersRepository) {}
@@ -23,7 +15,7 @@ class CreateUserUseCase {
         password,
         phone,
         ra,
-    }: IRequest): Promise<User> {
+    }: ICreateUserDTO): Promise<User> {
         const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
         if (userAlreadyExists) {
