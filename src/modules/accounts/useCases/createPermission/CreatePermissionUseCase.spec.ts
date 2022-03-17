@@ -1,4 +1,5 @@
-import { PermissionsRepositoryInMemory } from "../../repositories/in-memory/PermissionsRepositoryInMemory";
+import { PermissionsRepositoryInMemory } from "@modules/accounts/repositories/in-memory/PermissionsRepositoryInMemory";
+
 import { CreatePermissionError } from "./CreatePermissionError";
 import { CreatePermissionUseCase } from "./CreatePermissionUseCase";
 

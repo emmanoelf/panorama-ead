@@ -1,5 +1,6 @@
-import { ICreatePermissionDTO } from "../../dto/ICreatePermission";
-import { Permission } from "../../entities/Permission";
+import { ICreatePermissionDTO } from "@modules/accounts/dto/ICreatePermission";
+import { Permission } from "@modules/accounts/infra/typeorm/entities/Permission";
+
 import { IPermissionsRepository } from "../IPermissionsRepository";
 
 class PermissionsRepositoryInMemory implements IPermissionsRepository {

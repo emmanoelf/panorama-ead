@@ -1,4 +1,5 @@
-import { PermissionsRepository } from "../../repositories/PermissionsRepository";
+import { PermissionsRepository } from "@modules/accounts/infra/typeorm/repositories/PermissionsRepository";
+
 import { CreatePermissionController } from "./CreatePermissionController";
 import { CreatePermissionUseCase } from "./CreatePermissionUseCase";
 

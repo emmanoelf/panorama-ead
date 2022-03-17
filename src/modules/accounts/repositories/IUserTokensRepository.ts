@@ -1,5 +1,5 @@
 import { ICreateUserTokenDTO } from "../dto/ICreateUserTokenDTO";
-import { UserTokens } from "../entities/UserTokens";
+import { UserTokens } from "../infra/typeorm/entities/UserTokens";
 
 interface IUserTokensRepository {
     create(data: ICreateUserTokenDTO): Promise<UserTokens>;

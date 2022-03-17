@@ -1,5 +1,6 @@
-import { Permission } from "../../entities/Permission";
-import { IPermissionsRepository } from "../../repositories/IPermissionsRepository";
+import { Permission } from "@modules/accounts/infra/typeorm/entities/Permission";
+import { IPermissionsRepository } from "@modules/accounts/repositories/IPermissionsRepository";
+
 import { CreatePermissionError } from "./CreatePermissionError";
 
 interface IRequest {

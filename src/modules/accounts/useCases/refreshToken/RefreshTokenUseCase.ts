@@ -1,8 +1,9 @@
 import { sign, verify } from "jsonwebtoken";
 
-import auth from "../../../../config/auth";
-import { IDateProvider } from "../../../../shared/providers/DateProvider/IDateProvider";
-import { IUserTokensRepository } from "../../repositories/IUserTokensRepository";
+import auth from "@config/auth";
+import { IUserTokensRepository } from "@modules/accounts/repositories/IUserTokensRepository";
+import { IDateProvider } from "@shared/providers/DateProvider/IDateProvider";
+
 import { RefreshTokenError } from "./RefreshTokenError";
 
 interface IPayload {

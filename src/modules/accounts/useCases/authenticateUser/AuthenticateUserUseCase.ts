@@ -1,10 +1,11 @@
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
-import auth from "../../../../config/auth";
-import { IDateProvider } from "../../../../shared/providers/DateProvider/IDateProvider";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { IUserTokensRepository } from "../../repositories/IUserTokensRepository";
+import auth from "@config/auth";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import { IUserTokensRepository } from "@modules/accounts/repositories/IUserTokensRepository";
+import { IDateProvider } from "@shared/providers/DateProvider/IDateProvider";
+
 import { AuthenticateUserError } from "./AuthenticateUserError";
 
 interface IRequest {
@@ -31,6 +32,8 @@ class AuthenticateUserUseCase {
     async execute({ email, password }: IRequest): Promise<IResponse> {
         const user = await this.usersRepository.findByEmail(email);
         const {
+            secret,
+            secret_refresh_token,
             refresh_token_expires_days,
             refresh_token_expires_in,
             token_expires_in,
@@ -46,19 +49,15 @@ class AuthenticateUserUseCase {
             throw new AuthenticateUserError.EmailOrPasswordIncorrect();
         }
 
-        const token = sign({}, process.env.SECRET_TOKEN_APP, {
+        const token = sign({}, secret, {
             subject: user.id,
             expiresIn: token_expires_in,
         });
 
-        const refresh_token = sign(
-            { email },
-            process.env.REFRESH_SECRET_TOKEN_APP,
-            {
-                subject: user.id,
-                expiresIn: refresh_token_expires_in,
-            }
-        );
+        const refresh_token = sign({ email }, secret_refresh_token, {
+            subject: user.id,
+            expiresIn: refresh_token_expires_in,
+        });
 
         const expires_date = this.dateProvider.addDays(
             refresh_token_expires_days

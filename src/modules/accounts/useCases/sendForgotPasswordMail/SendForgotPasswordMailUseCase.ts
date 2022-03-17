@@ -1,10 +1,11 @@
 import { resolve } from "path";
 import { v4 as uuidV4 } from "uuid";
 
-import { IDateProvider } from "../../../../shared/providers/DateProvider/IDateProvider";
-import { IMailProvider } from "../../../../shared/providers/MailProvider/IMailProvider";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { IUserTokensRepository } from "../../repositories/IUserTokensRepository";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import { IUserTokensRepository } from "@modules/accounts/repositories/IUserTokensRepository";
+import { IDateProvider } from "@shared/providers/DateProvider/IDateProvider";
+import { IMailProvider } from "@shared/providers/MailProvider/IMailProvider";
+
 import { SendForgotPasswordMail } from "./SendForgotPasswordMailErrors";
 
 class SendForgotPasswordMailUseCase {

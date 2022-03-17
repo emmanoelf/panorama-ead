@@ -1,4 +1,5 @@
-import { UsersRepositoryInMemory } from "../../repositories/in-memory/UsersRepositoryInMemory";
+import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
+
 import { CreateUserErrors } from "./CreateUserErrors";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 

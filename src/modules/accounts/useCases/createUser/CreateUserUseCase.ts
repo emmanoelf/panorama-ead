@@ -1,8 +1,9 @@
 import { hash } from "bcryptjs";
 
-import { ICreateUserDTO } from "../../dto/ICreateUserDTO";
-import { User } from "../../entities/User";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { ICreateUserDTO } from "@modules/accounts/dto/ICreateUserDTO";
+import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+
 import { CreateUserErrors } from "./CreateUserErrors";
 
 class CreateUserUseCase {

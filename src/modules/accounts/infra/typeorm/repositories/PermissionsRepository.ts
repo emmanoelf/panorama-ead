@@ -1,8 +1,9 @@
 import { getRepository, Repository } from "typeorm";
 
-import { ICreatePermissionDTO } from "../dto/ICreatePermission";
+import { ICreatePermissionDTO } from "@modules/accounts/dto/ICreatePermission";
+import { IPermissionsRepository } from "@modules/accounts/repositories/IPermissionsRepository";
+
 import { Permission } from "../entities/Permission";
-import { IPermissionsRepository } from "./IPermissionsRepository";
 
 class PermissionsRepository implements IPermissionsRepository {
     private repository: Repository<Permission>;

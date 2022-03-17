@@ -1,6 +1,7 @@
-import { DayjsDateProvider } from "../../../../shared/providers/DateProvider/implementations/DayjsDateProvider";
-import { UsersRepository } from "../../repositories/UsersRepository";
-import { UsersTokensRepository } from "../../repositories/UsersTokensRepository";
+import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
+import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
+import { DayjsDateProvider } from "@shared/providers/DateProvider/implementations/DayjsDateProvider";
+
 import { AuthenticateUserController } from "./AuthenticateUserController";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 

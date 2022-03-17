@@ -1,5 +1,6 @@
-import { DayjsDateProvider } from "../../../../shared/providers/DateProvider/implementations/DayjsDateProvider";
-import { UsersTokensRepository } from "../../repositories/UsersTokensRepository";
+import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
+import { DayjsDateProvider } from "@shared/providers/DateProvider/implementations/DayjsDateProvider";
+
 import { RefreshTokenController } from "./RefreshTokenController";
 import { RefreshTokenUseCase } from "./RefreshTokenUseCase";
 

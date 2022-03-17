@@ -1,8 +1,9 @@
-import { IDateProvider } from "../../../../shared/providers/DateProvider/IDateProvider";
-import { DayjsDateProvider } from "../../../../shared/providers/DateProvider/implementations/DayjsDateProvider";
-import { ICreateUserDTO } from "../../dto/ICreateUserDTO";
-import { UsersRepositoryInMemory } from "../../repositories/in-memory/UsersRepositoryInMemory";
-import { UsersTokensRepositoryInMemory } from "../../repositories/in-memory/UsersTokensRepositoryInMemory";
+import { ICreateUserDTO } from "@modules/accounts/dto/ICreateUserDTO";
+import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
+import { UsersTokensRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersTokensRepositoryInMemory";
+import { IDateProvider } from "@shared/providers/DateProvider/IDateProvider";
+import { DayjsDateProvider } from "@shared/providers/DateProvider/implementations/DayjsDateProvider";
+
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { AuthenticateUserError } from "./AuthenticateUserError";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";

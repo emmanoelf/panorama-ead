@@ -1,5 +1,6 @@
-import { ICreateUserTokenDTO } from "../../dto/ICreateUserTokenDTO";
-import { UserTokens } from "../../entities/UserTokens";
+import { ICreateUserTokenDTO } from "@modules/accounts/dto/ICreateUserTokenDTO";
+import { UserTokens } from "@modules/accounts/infra/typeorm/entities/UserTokens";
+
 import { IUserTokensRepository } from "../IUserTokensRepository";
 
 class UsersTokensRepositoryInMemory implements IUserTokensRepository {
@@ -40,6 +41,13 @@ class UsersTokensRepositoryInMemory implements IUserTokensRepository {
             (userTokens) => userTokens.id === id
         );
         this.userTokens.splice(this.userTokens.indexOf(userTokens));
+    }
+
+    async findByRefreshToken(refresh_token: string): Promise<UserTokens> {
+        const userTokens = this.userTokens.find(
+            (userTokens) => userTokens.refresh_token === refresh_token
+        );
+        return userTokens;
     }
 }
 export { UsersTokensRepositoryInMemory };

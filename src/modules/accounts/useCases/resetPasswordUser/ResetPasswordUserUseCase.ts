@@ -1,8 +1,9 @@
 import { hash } from "bcryptjs";
 
-import { IDateProvider } from "../../../../shared/providers/DateProvider/IDateProvider";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { IUserTokensRepository } from "../../repositories/IUserTokensRepository";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import { IUserTokensRepository } from "@modules/accounts/repositories/IUserTokensRepository";
+import { IDateProvider } from "@shared/providers/DateProvider/IDateProvider";
+
 import { ResetPasswordUserErrors } from "./ResetPasswordUserErrors";
 
 interface IRequest {
