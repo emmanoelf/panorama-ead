@@ -13,7 +13,7 @@ class SchoolsRepository implements ISchoolsRepository {
     }
 
     async create({ description }: ICreateSchoolDTO): Promise<School> {
-        const school = await this.repository.create({ description });
+        const school = this.repository.create({ description });
         this.repository.save(school);
         return school;
     }
@@ -32,5 +32,19 @@ class SchoolsRepository implements ISchoolsRepository {
         const schools = await this.repository.find();
         return schools;
     }
+
+    async update(id: string, newDescription: string): Promise<void> {
+        const school = await this.findById(id);
+        this.repository.save({
+            id: school.id,
+            description: newDescription,
+            updated_at: new Date(),
+        });
+    }
+
+    async deleteById(id: string): Promise<void> {
+        await this.repository.delete(id);
+    }
 }
+
 export { SchoolsRepository };

@@ -32,6 +32,20 @@ class SchoolsRepositoryInMemory implements ISchoolsRepository {
         const { schools } = this;
         return schools;
     }
+
+    async update(id: string, newDescription: string): Promise<void> {
+        const school = await this.findById(id);
+        Object.assign(school, {
+            id: school.id,
+            description: newDescription,
+            updated_at: new Date(),
+        });
+    }
+
+    async deleteById(id: string): Promise<void> {
+        const school = this.schools.find((school) => school.id === id);
+        this.schools.splice(this.schools.indexOf(school));
+    }
 }
 
 export { SchoolsRepositoryInMemory };
