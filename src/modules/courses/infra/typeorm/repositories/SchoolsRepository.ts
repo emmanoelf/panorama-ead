@@ -27,5 +27,10 @@ class SchoolsRepository implements ISchoolsRepository {
         const school = await this.repository.findOne({ description });
         return school;
     }
+
+    async listAll(): Promise<School[]> {
+        const schools = await this.repository.find();
+        return schools;
+    }
 }
 export { SchoolsRepository };

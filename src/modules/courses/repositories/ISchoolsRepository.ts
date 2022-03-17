@@ -5,6 +5,7 @@ interface ISchoolsRepository {
     create(data: ICreateSchoolDTO): Promise<School>;
     findById(id: string): Promise<School>;
     findByDescription(description: string): Promise<School>;
+    listAll(): Promise<School[]>;
 }
 
 export { ISchoolsRepository };

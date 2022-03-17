@@ -27,6 +27,11 @@ class SchoolsRepositoryInMemory implements ISchoolsRepository {
         );
         return school;
     }
+
+    async listAll(): Promise<School[]> {
+        const { schools } = this;
+        return schools;
+    }
 }
 
 export { SchoolsRepositoryInMemory };
