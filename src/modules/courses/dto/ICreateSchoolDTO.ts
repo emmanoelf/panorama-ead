@@ -1,4 +1,4 @@
-class ICreateSchoolDTO {
+interface ICreateSchoolDTO {
     id?: string;
     description: string;
 }

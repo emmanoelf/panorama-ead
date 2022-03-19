@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateUsers1646694066224 implements MigrationInterface {
+export class CreateCourse1647625810464 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "users",
+                name: "courses",
                 columns: [
                     {
                         name: "id",
@@ -16,29 +16,11 @@ export class CreateUsers1646694066224 implements MigrationInterface {
                         type: "varchar",
                     },
                     {
-                        name: "ra",
-                        type: "varchar",
-                        isNullable: true,
+                        name: "user_id",
+                        type: "uuid",
                     },
                     {
-                        name: "email",
-                        type: "varchar",
-                    },
-                    {
-                        name: "password",
-                        type: "varchar",
-                    },
-                    {
-                        name: "phone",
-                        type: "varchar",
-                    },
-                    {
-                        name: "isFromHome",
-                        type: "boolean",
-                        default: true,
-                    },
-                    {
-                        name: "permission_id",
+                        name: "school_id",
                         type: "uuid",
                     },
                     {
@@ -54,11 +36,19 @@ export class CreateUsers1646694066224 implements MigrationInterface {
                 ],
                 foreignKeys: [
                     {
-                        name: "FKPermissionUser",
-                        referencedTableName: "permissions",
+                        name: "FKUserCourse",
+                        referencedTableName: "users",
                         referencedColumnNames: ["id"],
-                        columnNames: ["permission_id"],
+                        columnNames: ["user_id"],
                         onDelete: "CASCADE",
+                        onUpdate: "CASCADE",
+                    },
+                    {
+                        name: "FKSchoolCourse",
+                        referencedTableName: "schools",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["school_id"],
+                        onDelete: "SET NULL",
                         onUpdate: "CASCADE",
                     },
                 ],
@@ -67,6 +57,6 @@ export class CreateUsers1646694066224 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("users");
+        await queryRunner.dropTable("courses");
     }
 }
