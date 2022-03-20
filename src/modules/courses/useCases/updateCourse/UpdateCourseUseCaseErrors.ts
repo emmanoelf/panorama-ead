@@ -26,4 +26,12 @@ export namespace UpdateCourseUseCaseErrors {
             super("O nome deste curso já está em uso.");
         }
     }
+
+    export class UserNotCoordinatorOrProfessorCoordinator extends AppError {
+        constructor() {
+            super(
+                "O usuário selecionado não é coordenador e nem professor coordenador"
+            );
+        }
+    }
 }
