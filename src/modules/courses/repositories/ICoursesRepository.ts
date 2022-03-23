@@ -4,6 +4,7 @@ import { Course } from "../infra/typeorm/entities/Course";
 
 interface ICoursesRepository {
     create(data: ICreateCourseDTO): Promise<Course>;
+    findAll(): Promise<Course[]>;
     findById(id: string): Promise<Course>;
     findByName(name: string): Promise<Course>;
     update(data: IUpdateCourseDTO): Promise<Course>;

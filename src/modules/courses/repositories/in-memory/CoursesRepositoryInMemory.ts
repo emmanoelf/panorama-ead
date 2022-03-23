@@ -25,6 +25,11 @@ class CoursesRepositoryInMemory implements ICoursesRepository {
         return course;
     }
 
+    async findAll(): Promise<Course[]> {
+        const { courses } = this;
+        return courses;
+    }
+
     async findById(id: string): Promise<Course> {
         const course = this.courses.find((course) => course.id === id);
         return course;

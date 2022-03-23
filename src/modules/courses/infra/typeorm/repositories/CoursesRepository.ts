@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { createQueryBuilder, getRepository, Repository } from "typeorm";
 
 import { ICreateCourseDTO } from "@modules/courses/dto/ICreateCourseDTO";
 import { IUpdateCourseDTO } from "@modules/courses/dto/IUpdateCourseDTO";
@@ -27,6 +27,23 @@ class CoursesRepository implements ICoursesRepository {
         });
         this.repository.save(course);
         return course;
+    }
+
+    async findAll(): Promise<Course[]> {
+        const courses = createQueryBuilder("courses", "course")
+            .leftJoinAndSelect("course.user", "user")
+            .leftJoinAndSelect("course.school", "school")
+            .select([
+                "course.id",
+                "course.name",
+                "user.id",
+                "user.name",
+                "user.email",
+                "school.id",
+                "school.description",
+            ])
+            .getRawMany();
+        return courses;
     }
 
     async findById(id: string): Promise<Course> {
