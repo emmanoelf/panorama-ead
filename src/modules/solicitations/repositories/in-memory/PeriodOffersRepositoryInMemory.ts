@@ -45,7 +45,7 @@ class PeriodOffersRepositoryInMemory implements IPeriodOffersRepository {
         name,
         description,
     }: IUpdatePeriodOfferDTO): Promise<void> {
-        const periodOffer = this.findById(id);
+        const periodOffer = await this.findById(id);
         Object.assign(periodOffer, {
             name,
             description,
