@@ -13,20 +13,25 @@ class SolicitationsRepository implements ISolicitationsRepository {
     }
 
     async create({
+        id,
         name,
         description,
         period_offer_id,
         expected_deadline,
         note,
+        users,
     }: ICreateSolicitationDTO): Promise<Solicitation> {
         const solicitation = this.repository.create({
+            id,
             name,
             description,
             period_offer_id,
             expected_deadline,
             note,
+            users,
         });
 
+        this.repository.save(solicitation);
         return solicitation;
     }
 
