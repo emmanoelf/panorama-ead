@@ -3,10 +3,14 @@ import {
     CreateDateColumn,
     Entity,
     JoinColumn,
+    JoinTable,
+    ManyToMany,
     ManyToOne,
     PrimaryColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+
+import { User } from "@modules/accounts/infra/typeorm/entities/User";
 
 import { PeriodOffer } from "./PeriodOffer";
 
@@ -27,6 +31,14 @@ class Solicitation {
 
     @Column()
     period_offer_id: string;
+
+    @ManyToMany(() => User)
+    @JoinTable({
+        name: "solicitations_users",
+        joinColumns: [{ name: "solicitation_id" }],
+        inverseJoinColumns: [{ name: "user_id" }],
+    })
+    users: User[];
 
     @Column()
     expected_deadline: Date;
