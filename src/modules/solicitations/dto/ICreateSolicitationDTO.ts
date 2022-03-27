@@ -3,7 +3,6 @@ interface ICreateSolicitationDTO {
     description: string;
     period_offer_id: string;
     expected_deadline: Date;
-    deadline: Date;
     note?: string;
 }
 
