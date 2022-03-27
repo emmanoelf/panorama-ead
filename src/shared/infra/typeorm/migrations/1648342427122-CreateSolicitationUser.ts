@@ -53,6 +53,6 @@ export class CreateSolicitationUser1648342427122 implements MigrationInterface {
             "FKUserSolicitation"
         );
 
-        await queryRunner.dropDatabase("solicitations_users");
+        await queryRunner.dropTable("solicitations_users");
     }
 }

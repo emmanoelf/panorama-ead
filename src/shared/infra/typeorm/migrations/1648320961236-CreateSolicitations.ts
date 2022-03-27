@@ -24,6 +24,10 @@ export class CreateSolicitations1648320961236 implements MigrationInterface {
                         type: "uuid",
                     },
                     {
+                        name: "course_id",
+                        type: "uuid",
+                    },
+                    {
                         name: "expected_deadline",
                         type: "timestamp",
                     },

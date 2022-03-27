@@ -11,6 +11,7 @@ import {
 import { v4 as uuidV4 } from "uuid";
 
 import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { Course } from "@modules/courses/infra/typeorm/entities/Course";
 
 import { PeriodOffer } from "./PeriodOffer";
 
@@ -31,6 +32,13 @@ class Solicitation {
 
     @Column()
     period_offer_id: string;
+
+    @ManyToOne(() => Course)
+    @JoinColumn({ name: "course_id" })
+    course: Course;
+
+    @Column()
+    course_id: string;
 
     @ManyToMany(() => User)
     @JoinTable({
