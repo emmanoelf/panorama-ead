@@ -65,7 +65,6 @@ class SolicitationsRepository implements ISolicitationsRepository {
                 "periodOffer.description",
                 "course.id",
                 "course.name",
-                "course.school",
                 "user.id",
                 "user.name",
                 "user.email",
