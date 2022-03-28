@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { createQueryBuilder, getRepository, Repository } from "typeorm";
 
 import { ICreateSolicitationDTO } from "@modules/solicitations/dto/ICreateSolicitationDTO";
 import { ISolicitationsRepository } from "@modules/solicitations/repositories/ISolicitationsRepository";
@@ -47,10 +47,34 @@ class SolicitationsRepository implements ISolicitationsRepository {
         return solicitation;
     }
 
-    async listAll(): Promise<Solicitation[]> {
-        const solicitations = await this.repository.find({
-            order: { created_at: "DESC" },
-        });
+    async listAll(): Promise<any[]> {
+        const solicitations = await createQueryBuilder(
+            "solicitations",
+            "solicitation"
+        )
+            .leftJoinAndSelect("solicitation.periodOffer", "periodOffer")
+            .leftJoinAndSelect("solicitation.course", "course")
+            .leftJoinAndSelect("solicitation.users", "user")
+            .select([
+                "solicitation.id",
+                "solicitation.name",
+                "solicitation.description",
+                "solicitation.expected_deadline",
+                "periodOffer.id",
+                "periodOffer.name",
+                "periodOffer.description",
+                "course.id",
+                "course.name",
+                "course.school",
+                "user.id",
+                "user.name",
+                "user.email",
+                "user.permission_id",
+            ])
+            .orderBy("solicitation.name", "ASC")
+            .addOrderBy("solicitation.created_at", "DESC")
+            .getMany();
+
         return solicitations;
     }
 }
