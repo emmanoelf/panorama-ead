@@ -10,6 +10,7 @@ Trata-se de uma aplicação para aquisição de novos cursos ead, onde será con
 - [x] Envio de email utilizando `sendgrip`
 - [x] Vinculado Solicitações com Usuários (N:N)
 - [ ] Criação de solicitações
+- [ ] Criar conversas via mensagens
 - [ ] Documentar utilizando `swagger`
 - [ ] Criar Atividade Acadêmica
 - [ ] Criar Curso Atividade Acadêmica (N:N) com cursos
