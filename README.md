@@ -8,6 +8,7 @@ Trata-se de uma aplicação para aquisição de novos cursos ead, onde será con
 - [x] Criação de cursos
 - [x] Inserir aplicação e o banco no `docker`
 - [x] Envio de email utilizando `sendgrip`
+- [x] Vinculado Solicitações com Usuários (N:N)
 - [ ] Criação de solicitações
 - [ ] Documentar utilizando `swagger`
 - [ ] Criar Atividade Acadêmica
