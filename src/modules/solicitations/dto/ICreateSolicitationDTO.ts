@@ -1,7 +1,6 @@
 import { User } from "@modules/accounts/infra/typeorm/entities/User";
 
 interface ICreateSolicitationDTO {
-    id?: string;
     name: string;
     description: string;
     period_offer_id: string;
@@ -9,6 +8,7 @@ interface ICreateSolicitationDTO {
     expected_deadline: Date;
     note?: string;
     users?: User[];
+    id?: string;
 }
 
 export { ICreateSolicitationDTO };

@@ -76,6 +76,37 @@ class SolicitationsRepository implements ISolicitationsRepository {
 
         return solicitations;
     }
+
+    async listOneSolicitationUsers(id: string): Promise<any> {
+        const solicitations = await createQueryBuilder(
+            "solicitations",
+            "solicitation"
+        )
+            .leftJoinAndSelect("solicitation.users", "user")
+            .select([
+                "solicitation.id",
+                "solicitation.name",
+                "solicitation.description",
+                "solicitation.expected_deadline",
+                "user.id",
+                "user.name",
+                "user.email",
+                "user.permission_id",
+            ])
+            .where("solicitation.id = :id", { id })
+            .getOne();
+
+        return solicitations;
+    }
+
+    async isFinished(id: string): Promise<void> {
+        await this.repository.save({
+            id,
+            isFinished: true,
+            deadline: new Date(),
+            updated_at: new Date(),
+        });
+    }
 }
 
 export { SolicitationsRepository };

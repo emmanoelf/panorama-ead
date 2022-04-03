@@ -7,7 +7,6 @@ class SolicitationsRepositoryInMemory implements ISolicitationsRepository {
     solicitations: Solicitation[] = [];
 
     async create({
-        id,
         name,
         description,
         period_offer_id,
@@ -15,10 +14,10 @@ class SolicitationsRepositoryInMemory implements ISolicitationsRepository {
         expected_deadline,
         note,
         users,
+        id,
     }: ICreateSolicitationDTO): Promise<Solicitation> {
         const solicitation = new Solicitation();
         Object.assign(solicitation, {
-            id,
             name,
             description,
             period_offer_id,
@@ -26,10 +25,10 @@ class SolicitationsRepositoryInMemory implements ISolicitationsRepository {
             expected_deadline,
             note,
             users,
+            id,
         });
 
         this.solicitations.push(solicitation);
-
         return solicitation;
     }
 
@@ -50,6 +49,19 @@ class SolicitationsRepositoryInMemory implements ISolicitationsRepository {
     async listAll(): Promise<any[]> {
         const { solicitations } = this;
         return solicitations;
+    }
+
+    async isFinished(id: string): Promise<void> {
+        const solicitation = await this.findById(id);
+        solicitation.isFinished = true;
+        solicitation.deadline = new Date();
+    }
+
+    async listOneSolicitationUsers(id: string): Promise<any> {
+        const solicitation = await this.solicitations.find(
+            (solicitation) => solicitation.id === id
+        );
+        return solicitation;
     }
 }
 
