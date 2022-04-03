@@ -1,4 +1,5 @@
 import { ICreateSolicitationDTO } from "../dto/ICreateSolicitationDTO";
+import { IUpdateSolicitationDTO } from "../dto/IUpdateSolicitationDTO";
 import { Solicitation } from "../infra/typeorm/entities/Solicitation";
 
 interface ISolicitationsRepository {
@@ -8,6 +9,7 @@ interface ISolicitationsRepository {
     listAll(): Promise<any[]>;
     isFinished(id: string): Promise<void>;
     listOneSolicitationUsers(id: string): Promise<any>;
+    update(data: IUpdateSolicitationDTO): Promise<void>;
 }
 
 export { ISolicitationsRepository };

@@ -1,4 +1,5 @@
 import { ICreateSolicitationDTO } from "@modules/solicitations/dto/ICreateSolicitationDTO";
+import { IUpdateSolicitationDTO } from "@modules/solicitations/dto/IUpdateSolicitationDTO";
 import { Solicitation } from "@modules/solicitations/infra/typeorm/entities/Solicitation";
 
 import { ISolicitationsRepository } from "../ISolicitationsRepository";
@@ -62,6 +63,27 @@ class SolicitationsRepositoryInMemory implements ISolicitationsRepository {
             (solicitation) => solicitation.id === id
         );
         return solicitation;
+    }
+
+    async update({
+        id,
+        name,
+        description,
+        period_offer_id,
+        course_id,
+        expected_deadline,
+        note,
+    }: IUpdateSolicitationDTO): Promise<void> {
+        const solicitation = await this.findById(id);
+        Object.assign(solicitation, {
+            name,
+            description,
+            period_offer_id,
+            course_id,
+            expected_deadline,
+            note,
+            updated_at: new Date(),
+        });
     }
 }
 
