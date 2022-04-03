@@ -4,6 +4,7 @@ import createSolicitationController from "@modules/solicitations/useCases/create
 import createSolicitationUserController from "@modules/solicitations/useCases/createSolicitationUser";
 import finishSolicitationController from "@modules/solicitations/useCases/finishSolicitation";
 import listAllSolicitationsController from "@modules/solicitations/useCases/listAllSolicitations";
+import updateSolicitationController from "@modules/solicitations/useCases/updateSolicitation";
 
 const solicitationRoutes = Router();
 
@@ -16,7 +17,10 @@ solicitationRoutes.get("/", (request, response) => {
 solicitationRoutes.put("/users/:id", (request, response) => {
     return createSolicitationUserController().handle(request, response);
 });
-solicitationRoutes.patch("/:id", (request, response) => {
+solicitationRoutes.put("/:id", (request, response) => {
+    return updateSolicitationController().handle(request, response);
+});
+solicitationRoutes.patch("/finish/:id", (request, response) => {
     return finishSolicitationController().handle(request, response);
 });
 
