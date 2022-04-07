@@ -85,6 +85,13 @@ class SolicitationsRepositoryInMemory implements ISolicitationsRepository {
             updated_at: new Date(),
         });
     }
+
+    async deleteById(id: string): Promise<void> {
+        const solicitation = this.solicitations.find(
+            (solicitation) => solicitation.id === id
+        );
+        this.solicitations.splice(this.solicitations.indexOf(solicitation));
+    }
 }
 
 export { SolicitationsRepositoryInMemory };
