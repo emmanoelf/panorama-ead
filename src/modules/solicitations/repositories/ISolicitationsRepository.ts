@@ -10,6 +10,7 @@ interface ISolicitationsRepository {
     isFinished(id: string): Promise<void>;
     listOneSolicitationUsers(id: string): Promise<any>;
     update(data: IUpdateSolicitationDTO): Promise<void>;
+    deleteById(id: string): Promise<void>;
 }
 
 export { ISolicitationsRepository };

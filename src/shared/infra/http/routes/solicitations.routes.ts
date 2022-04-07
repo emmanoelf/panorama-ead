@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import createSolicitationController from "@modules/solicitations/useCases/createSolicitation";
 import createSolicitationUserController from "@modules/solicitations/useCases/createSolicitationUser";
+import deleteSolicitationController from "@modules/solicitations/useCases/deleteSolicitation";
 import finishSolicitationController from "@modules/solicitations/useCases/finishSolicitation";
 import listAllSolicitationsController from "@modules/solicitations/useCases/listAllSolicitations";
 import updateSolicitationController from "@modules/solicitations/useCases/updateSolicitation";
@@ -22,6 +23,9 @@ solicitationRoutes.put("/:id", (request, response) => {
 });
 solicitationRoutes.patch("/finish/:id", (request, response) => {
     return finishSolicitationController().handle(request, response);
+});
+solicitationRoutes.delete("/:id", (request, response) => {
+    return deleteSolicitationController().handle(request, response);
 });
 
 export { solicitationRoutes };

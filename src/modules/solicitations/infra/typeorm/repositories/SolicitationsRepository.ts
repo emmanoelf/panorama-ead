@@ -129,6 +129,10 @@ class SolicitationsRepository implements ISolicitationsRepository {
             updated_at: new Date(),
         });
     }
+
+    async deleteById(id: string): Promise<void> {
+        await this.repository.delete(id);
+    }
 }
 
 export { SolicitationsRepository };
