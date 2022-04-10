@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import { authenticateRoutes } from "./authenticate.routes";
+import { chatsRoutes } from "./chats.routes";
 import { coursesRoutes } from "./courses.routes";
 import { historic_courses } from "./historic_courses.routes";
 import { passwordRoutes } from "./password.routes";
@@ -21,5 +22,6 @@ router.use("/courses", coursesRoutes);
 router.use("/historic_courses", historic_courses);
 router.use("/period-offer", period_offerRoutes);
 router.use("/solicitations", solicitationRoutes);
+router.use("/chats", chatsRoutes);
 
 export { router };
