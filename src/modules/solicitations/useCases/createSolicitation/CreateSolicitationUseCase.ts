@@ -1,6 +1,7 @@
 import { ICoursesRepository } from "@modules/courses/repositories/ICoursesRepository";
 import { ICreateSolicitationDTO } from "@modules/solicitations/dto/ICreateSolicitationDTO";
 import { Solicitation } from "@modules/solicitations/infra/typeorm/entities/Solicitation";
+import { IChatsRepository } from "@modules/solicitations/repositories/IChatsRepository";
 import { IPeriodOffersRepository } from "@modules/solicitations/repositories/IPeriodOffersRepository";
 import { ISolicitationsRepository } from "@modules/solicitations/repositories/ISolicitationsRepository";
 
@@ -10,7 +11,8 @@ class CreateSolicitationUseCase {
     constructor(
         private solicitationsRepository: ISolicitationsRepository,
         private periodOffersRepository: IPeriodOffersRepository,
-        private coursesRepository: ICoursesRepository
+        private coursesRepository: ICoursesRepository,
+        private chatsRepository: IChatsRepository
     ) {}
 
     async execute({
@@ -46,6 +48,8 @@ class CreateSolicitationUseCase {
             course_id,
             note,
         });
+
+        await this.chatsRepository.create(solicitation.id);
 
         return solicitation;
     }
